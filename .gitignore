@@ -1,0 +1,12 @@
+node_modules
+bower_components
+test/bower_components
+sftp-config.json
+.editorconfig
+wp-config.php
+.tmp
+.sass-cache
+*.sublime-*
+dist
+.idea/*
+.DS_Store

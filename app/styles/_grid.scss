@@ -1,0 +1,122 @@
+.row {
+	width: 100%;
+	max-width: $max-width;
+	margin: 0 auto;
+
+	.row {
+		margin-right: -#{$gap/2};
+		margin-left: -#{$gap/2};
+		width: auto;
+	}
+
+	&:after,
+	&:before {
+		display: table;
+		flex-basis: 0;
+		order: 1;
+		content: " ";
+	}
+
+	&:after {
+		clear: both;
+	}
+
+	&.flex {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	&.flex--c {
+		align-items: center;
+	}
+
+	&--collapsed {
+		margin-right: 0 !important;
+		margin-left: 0 !important;
+
+		> .col {
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+}
+
+.#{$column-name} {
+	box-sizing: border-box;
+	width: 100%;
+	padding-right: #{$gap/2};
+	padding-left: #{$gap/2};
+	float: left;
+
+	&.flex {
+		display: flex;
+		flex-flow: row wrap;
+
+		.field {
+			width: auto;
+		}
+	}
+
+	@each $item in $breakpoints {
+		@for $i from 1 through $columns {
+			@include breakpoint(nth($item, 1) up) {
+				$br: nth($item, 4);
+
+				&.#{$br}-a {
+					width: auto;
+				}
+
+				&.#{$br}-#{$i} {
+					width: percentage($i/$columns);
+				}
+
+				&.#{$br}-#{$offset-name}-#{$i} {
+					margin-left: percentage($i/$columns);
+				}
+			}
+		}
+	}
+}
+
+@each $item in $breakpoints {
+	$br: nth($item, 4);
+	$name: nth($item, 1);
+
+	@include breakpoint($name up) {
+		.hide-#{$br}-u {
+			display: none !important;
+		}
+	}
+
+	@include breakpoint($name only) {
+		.hide-#{$br}-o {
+			display: none !important;
+		}
+	}
+
+	@include breakpoint($name down) {
+		.hide-#{$br}-d {
+			display: none !important;
+		}
+	}
+}
+
+.grid-10 {
+	> .#{$column-name} {
+		@each $item in $breakpoints {
+			@for $i from 1 through 10 {
+				@include breakpoint(nth($item, 1) up) {
+					$br: nth($item, 4);
+
+					&.#{$br}-#{$i} {
+						width: percentage($i/10);
+					}
+
+					&.#{$br}-#{$offset-name}-#{$i} {
+						margin-left: percentage($i/10);
+					}
+				}
+			}
+		}
+	}
+}

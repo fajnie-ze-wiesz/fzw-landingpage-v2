@@ -1,0 +1,87 @@
+@mixin rwd-pd() {
+	padding-right: 30px;
+	padding-left: 30px;
+
+	@include breakpoint(small only) {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+}
+
+@mixin reset-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@mixin breakpoint($data) {
+	$point: nth($data, 1);
+	$direction: nth($data, 2);
+	$max: false;
+	$min: false;
+	$first: false;
+	$last: false;
+	$value: false;
+
+	@each $item in $breakpoints {
+		$name: nth($item, 1);
+		$index: index($breakpoints, $item);
+
+		@if $name == $point {
+			$value: $item;
+		}
+	}
+
+	@if $direction == up {
+		$number: nth($value, 2);
+		$min: if($number, $number, false);
+	} @else 
+	if $direction == down {
+		$number: nth($value, 3);
+		$max: if($number, $number, false);
+	} @else 
+	if $direction == only {
+		$number1: nth($value, 2);
+		$number2: nth($value, 3);
+
+		$min: if($number1, $number1, false);
+		$max: if($number2, $number2, false);
+	}
+
+	@if $min and $max {
+		@media all and (min-width: $min+px) and (max-width: $max+px) {
+			@content;
+		}
+	} @else 
+	if $min {
+		@media all and (min-width: $min+px) {
+			@content;
+		}
+	} @else 
+	if $max {
+		@media all and (max-width: $max+px) {
+			@content;
+		}
+	} @else 
+	if $max == false {
+		@content;
+	}
+}
+
+@mixin placeholder($color) {
+	&::-webkit-input-placeholder {
+		color: $color;
+	}
+
+	&:-moz-placeholder {
+		color: $color;
+	}
+
+	&::-moz-placeholder {
+		color: $color;
+	}
+
+	&:-ms-input-placeholder {
+		color: $color;
+	}
+}

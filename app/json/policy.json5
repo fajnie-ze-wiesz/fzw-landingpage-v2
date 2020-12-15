@@ -1,0 +1,7 @@
+{
+    in_file: "statyczna.twig",
+    page: {
+        prefix: "Informacje",
+        title: "Polityka prywatności"
+    }
+}

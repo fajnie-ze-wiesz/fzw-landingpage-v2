@@ -1,0 +1,14 @@
+{
+    "app": {
+        "build_to": {
+            "path": "../../backend/frontend/web",
+            "dir": [
+                "styles/*.css",
+                "scripts/*.js",
+                "fonts/**/*.{eot,svg,ttf,woff,woff2}",
+                "images/*.{jpg,jpeg,svg,png,gif}",
+                "*.{png,ico}"
+            ]
+        }
+    }
+}
