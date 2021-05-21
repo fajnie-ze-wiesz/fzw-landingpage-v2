@@ -1,0 +1,126 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+executors:
+  docker-executor:
+    docker:
+      - image: cimg/node:10.24.1
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    working_directory: ~/project
+
+commands:
+  save_npm_modules:
+    steps:
+      - save_cache:
+          paths:
+            - ~/project/node_modules
+          key: v0.1-npm-modules-{{ checksum "package-lock.json" }}
+  restore_npm_modules:
+    steps:
+      - restore_cache:
+          keys:
+            - v0.1-npm-modules-{{ checksum "package-lock.json" }}
+  save_bower_components:
+    steps:
+      - save_cache:
+          paths:
+            - ~/project/bower_components
+          key: v0.1-bower-components-{{ checksum "bower.json" }}
+  restore_bower_components:
+    steps:
+      - restore_cache:
+          keys:
+            - v0.1-bower-components-{{ checksum "bower.json" }}
+  save_project_workspace:
+    steps:
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/
+            - .ssh/known_hosts
+  restore_project_workspace:
+    steps:
+      - attach_workspace:
+          at: ~/
+
+jobs:
+  setup_project:
+    executor: docker-executor
+    steps:
+      - checkout
+      - restore_npm_modules
+      - restore_bower_components
+      - run:
+          name: Install NPM dependencies
+          command: npm install
+      - run:
+          name: Install Bower dependencies
+          command: npm run install:bower
+      - save_npm_modules
+      - save_bower_components
+      - save_project_workspace
+  build:
+    executor: docker-executor
+    steps:
+      - restore_project_workspace
+      - run:
+          name: Build page
+          command: npm run build
+      - save_project_workspace
+  deploy:
+    parameters:
+      env:
+        type: string
+      fqdn:
+        type: string
+      ssh_fingerprint:
+        type: string
+      ssh_keyfile:
+        type: string
+    executor: docker-executor
+    steps:
+      - restore_project_workspace
+      - run:
+          name: Set CNAME
+          command: echo '<<parameters.fqdn>>' > dist/CNAME
+      - run:
+          name: Set Git user name
+          command: git config user.name "ci-build"
+      - run:
+          name: Set Git user email
+          command: git config user.email "ci-build@fajniezewiesz.pl"
+      - run:
+          name: Add gh-pages-staging remote
+          command: git remote add gh-pages-staging git@github.com:fajnie-ze-wiesz/test-lp-fajnie-ze-wiesz.github.io.git
+      - run:
+          name: Add gh-pages-production remote
+          command: git remote add gh-pages-production git@github.com:fajnie-ze-wiesz/lp-fajnie-ze-wiesz.github.io.git
+      - add_ssh_keys:
+          fingerprints:
+            - "<<parameters.ssh_fingerprint>>"
+      - run:
+          name: Re-add SSH identities
+          command: |
+            ssh-add -D
+            ssh-add <<parameters.ssh_keyfile>>
+      - run:
+          name: Deploy to <<parameters.env>> github pages
+          command: npm run deploy:<<parameters.env>>
+
+workflows:
+  main:
+    jobs:
+      - setup_project
+      - build:
+          requires:
+            - setup_project
+      - deploy:
+          name: deploy_staging
+          env: staging
+          fqdn: test-lp.fajniezewiesz.pl
+          ssh_keyfile: ~/.ssh/id_rsa_115c75fd2516e7a06c67d0976467f860
+          ssh_fingerprint: "11:5c:75:fd:25:16:e7:a0:6c:67:d0:97:64:67:f8:60"
+          requires:
+            - build
