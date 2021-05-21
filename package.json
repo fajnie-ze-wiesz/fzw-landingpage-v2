@@ -3,14 +3,23 @@
 	"engines": {
 		"node": ">=4"
 	},
+	"scripts": {
+		"install:bower": "bower install",
+		"build": "gulp build",
+		"deploy:staging": "gh-pages --dist dist/ --remote gh-pages-staging --branch master --dotfiles",
+		"deploy:production": "gh-pages --dist dist/ --remote gh-pages-production --branch master --dotfiles",
+		"clean": "rm -r dist/; rm -r bower_components; rm -r node_modules"
+	},
 	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-preset-es2015": "^6.24.1",
 		"babel-register": "^6.26.0",
+		"bower": "^1.8.12",
 		"browser-sync": "^2.26.14",
 		"chance": "^1.0.16",
 		"del": "^3.0.0",
 		"faker": "^4.1.0",
+		"gh-pages": "^2.0.1",
 		"gulp": "^3.9.1",
 		"gulp-autoprefixer": "^4.0.0",
 		"gulp-babel": "^7.0.0",
