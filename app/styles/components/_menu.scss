@@ -1,0 +1,161 @@
+.mm-spn.mm-spn--navbar:after {
+    opacity: 1;
+    text-align: left;
+    font-size: 24px;
+    line-height: 60px;
+    font-weight: 700;
+    color: $accent;
+    top:20px;
+}
+
+.mm-spn.mm-spn--navbar ul:before {
+    display: none;
+}
+
+.mm-spn.mm-spn--light {
+    color: $primary;
+    background: #fff;
+}
+
+.mm-spn li {
+    &:after {
+        display: none;
+    }
+}
+
+.mm-spn.mm-spn--navbar ul {
+    top: 80px;
+}
+
+.hamburger {
+    position: absolute;
+    top:50px;
+    right:0;
+    z-index: 10;
+    display: none;
+
+    @include breakpoint(small only) {
+        display: block;
+    }
+}
+
+nav {
+    transform:translateY(-80px);
+    margin:0;
+    position: relative;
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding:0;
+        display: flex;
+        justify-content: center;
+
+        li {
+            margin:0 10px;
+            position: relative;
+
+            a {
+                color:$primary;
+                transition-duration: 0.3s;
+                text-transform: uppercase;
+                font-weight: 500;
+                font-size: 16px;
+                display: block;
+                position: relative;
+
+                &:after {
+                    left:0;
+                    bottom:-4px;
+                    right:0;
+                    position: absolute;
+                    height: 3px;
+                    background: $accent;
+                    content:'';
+                    transition-duration: 0.3s;
+                    opacity: 0;
+                }
+
+                &:hover {
+                    color:$primary;
+
+                    &:after {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &.current {
+                a:after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .langs {
+        position: absolute;
+        top:0;
+        right:0;
+        display: flex;
+
+        a {
+            margin-left:10px;
+            opacity: 0.5;
+            transition-duration: 0.2s;
+
+            &.current,
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        svg {
+            height: 26px;
+            width: 26px;
+        }
+    }
+
+    @include breakpoint(medium only) {
+        transform:translateY(-40px);
+
+        ul li a {
+            font-size: 14px;
+        }
+    }
+
+    @include breakpoint(small only) {
+        display: none;
+    }
+}
+
+#menu {
+    .langs {
+        position: absolute;
+        top:36px;
+        right:15px;
+        display: flex;
+
+        a {
+            margin-left:10px;
+            opacity: 0.5;
+            transition-duration: 0.2s;
+            border:0;
+            padding:0;
+
+            &:after {
+                display: none;
+            }
+
+            &.current,
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        svg {
+            height: 26px;
+            width: 26px;
+        }
+    }
+}

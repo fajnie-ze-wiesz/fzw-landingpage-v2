@@ -410,11 +410,6 @@ gulp.task("post-build", ["images", "fonts", "extras"], () => {
 
     return gulp
         .src(_.dist + "/**/*")
-        .pipe($.if("*.js", $.uglify({
-            compress: {
-                drop_console: true
-            }
-        })))
         .pipe($.if("*.css", $.cssnano({
             safe: true,
             autoprefixer: false,

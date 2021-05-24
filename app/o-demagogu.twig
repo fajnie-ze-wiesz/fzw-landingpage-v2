@@ -1,0 +1,55 @@
+{% include "_parts/header.twig" %}
+<main class="page page--content">
+   <header class="main-header">
+      <a href="#menu" class="hamburger hamburger--slider" type="button">
+         <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+         </span>
+      </a>
+      <div class="row">
+         <div class="large-12">
+            <nav>
+               <ul>
+                  <li class="current"><a href="o-demagogu.html">O Demagogu</a></li>
+                  <li><a href="partnerzy.html">Partnerzy</a></li>
+                  <li><a href="rozwijaj-gre.html">Rozwijaj grę!</a></li>
+                  <li><a href="kontakt.html">Kontakt</a></li>
+                  <li><a href="https://aplikacja.fajniezewiesz.pl" traget="_blank">Zagraj</a></li>
+               </ul>
+               <div class="langs">
+                  <a href="https://fakesnothanks.pl">{% include "images/en.svg" %}</a>
+                  <a href="#" class="current">{% include "images/pl.svg" %}</a>
+               </div>
+            </nav>
+            <div class="ornaments ornaments--left">
+               <img class="lazy rellax" alt="" role="presentation" src="images/placeholder.png" data-src="images/Cube_Rounded_Light_Blue.png" data-rellax-speed="-3">
+               <img class="lazy rellax" alt="" role="presentation" src="images/placeholder.png" data-src="images/Torus_X3_Orange.png" data-rellax-speed="-4">
+               <img class="lazy rellax" alt="" role="presentation" src="images/placeholder.png" data-src="images/Cylinder_X3_Orange.png" data-rellax-speed="-1">
+            </div>
+            <div class="ornaments ornaments--right">
+               <img class="lazy rellax" alt="" role="presentation" src="images/placeholder.png" data-src="images/Sphere_Blue.png" data-rellax-speed="1">
+               <img class="lazy rellax" alt="" role="presentation" src="images/placeholder.png" data-src="images/Cylinder_X2_Orange.png" data-rellax-speed="-3">
+               <img class="lazy rellax" alt="" role="presentation" src="images/placeholder.png" data-src="images/Torus_X3_Light_Blue.png" data-rellax-speed="-2">
+               <img class="lazy rellax" alt="" role="presentation" src="images/placeholder.png" data-src="images/Sphere_Orange.png" data-rellax-speed="-2">
+            </div>
+            <a href="/" class="logo">{% include "images/logo.svg" %}</a>
+         </div>
+   </header>
+
+   <section class="content">
+      <div class="row">
+         <div class="col">
+            <h2>O Demagogu</h2>
+         </div>
+         <div class="col m-8">
+            <p>Gra “Fajnie, że wiesz” to narzędzie stworzone przez zespół Stowarzyszenia Demagog. Jesteśmy pierwszą w Polsce organizacją fact-checkingową, która weryfikuje informacje pojawiające się w Internecie. Koncentrujemy się na poprawie jakości debaty publicznej, weryfikacji wypowiedzi osób publicznych oraz walce z fake newsami. Od maja 2019 roku należymy do Międzynarodowej Sieci Fact-Checkingowej (IFCN).</p>
+            <a href="https://demagog.org.pl" target="_blank" class="button">Więcej informacji</a>
+         </div>
+         <div class="col m-4">
+            <img src="images/demagog.jpeg" alt="Demagog logo"/>
+         </div>
+      </div>
+   </section>
+</main>
+
+{% include "_parts/footer.twig" %}

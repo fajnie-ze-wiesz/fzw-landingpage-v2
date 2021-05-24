@@ -1,0 +1,101 @@
+{
+	"site": {
+		"language": "pl-PL",
+		"name": "znamauto.pl",
+		"link": "home.html"
+	},
+	"theme": {
+		"link": "",
+		"version": 1.02
+	},
+	"options": {
+		"footer": [{
+			"title": "Serwis",
+			"class": "l-3 s-6",
+			"menu": {
+				"items": [{
+					"slug": "ostatnio-dodane",
+					"link": "ostatnio-dodane.html",
+					"title": "Ostatnio dodane",
+					"classes": [""]
+				}, {
+					"slug": "dodaj-ogloszenie",
+					"link": "dodaj.html",
+					"title": "Dodaj ogłoszenie",
+					"classes": [""]
+				}]
+			}
+		}, {
+			"title": "Informacje",
+			"class": "l-3 s-6",
+			"menu": {
+				"items": [{
+					"slug": "faq",
+					"link": "faq.html",
+					"title": "FAQ",
+					"classes": [""]
+				},{
+					"slug": "polityka-prywatnosci",
+					"link": "privacy-policy.html",
+					"title": "Polityka prywatności",
+					"classes": [""]
+				}, {
+					"slug": "regulamin",
+					"link": "rules.html",
+					"title": "Regulamin",
+					"classes": [""]
+				}]
+			}
+		}, {
+			"title": "Kontakt",
+			"class": "l-3 s-6",
+			"email": "info@znamauto.pl"
+		}, {
+			"class": "l-3 s-6",
+			"social": [
+				{
+					"icon": "svg/facebook.svg",
+					"link": "https://facebook.pl/znamauto"
+				},
+				{
+					"icon": "svg/instagram.svg",
+					"link": "https://facebook.pl/instagram"
+				}
+			]
+		}],
+		"cookies": "<p>Nasza strona internetowa używa plików cookies (tzw. ciasteczka) w celach statystycznych, reklamowych oraz funkcjonalnych. <a href='http://wszystkoociasteczkach.pl/' target=\"_blank\">Dowiedz się więcej</a></p>"
+	},
+	"menu": {
+		"items": [{
+			"slug": "home",
+			"link": "home.html",
+			"title": "Home",
+			"classes": ["current_page_item"]
+		}, {
+			"slug": "solution",
+			"link": "solution.html",
+			"title": "Solution",
+			"classes": [""]
+		}, {
+			"slug": "tutorial",
+			"link": "tutorial.html",
+			"title": "Tutorial",
+			"classes": [""]
+		}, {
+			"slug": "live",
+			"link": "live.html",
+			"title": "Live",
+			"classes": [""]
+		}, {
+			"slug": "history",
+			"link": "history.html",
+			"title": "History",
+			"classes": [""]
+		}, {
+			"slug": "contact",
+			"link": "contact.html",
+			"title": "Contact",
+			"classes": [""]
+		}]
+	}
+}
