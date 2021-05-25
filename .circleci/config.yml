@@ -27,12 +27,12 @@ commands:
       - save_cache:
           paths:
             - ~/project/bower_components
-          key: v0.1-bower-components-{{ checksum "bower.json" }}
+          key: v0.2-bower-components-{{ checksum "bower.json" }}-{{ checksum ".bower-bumpfile" }}
   restore_bower_components:
     steps:
       - restore_cache:
           keys:
-            - v0.1-bower-components-{{ checksum "bower.json" }}
+            - v0.2-bower-components-{{ checksum "bower.json" }}-{{ checksum ".bower-bumpfile" }}
   save_project_workspace:
     steps:
       - persist_to_workspace:
