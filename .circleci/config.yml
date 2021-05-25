@@ -68,6 +68,8 @@ jobs:
       - run:
           name: Build page
           command: npm run build
+      - store_artifacts:
+          path: ~/project/dist
       - save_project_workspace
   deploy:
     parameters:
